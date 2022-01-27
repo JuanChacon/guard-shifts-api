@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+#fake data 
+
+if Rails.env.development?
+    3.times do 
+       Employee.create(name:Faker::Movies::StarWars.character,surname:Faker::TvShows::Friends.character)
+    end
+    
+    2.times do 
+        Service.create(name:Faker::TvShows::Simpsons.character)
+    end
+
+
+end

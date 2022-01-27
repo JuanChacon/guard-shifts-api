@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+
+
+  use_doorkeeper
+   #mount API
+   mount API::Helpers::Base => '/'
+
+   #helper from doorkeeper to do routes to token, create applications keys and others resources
+   use_doorkeeper do
+     # No need to register client application
+     skip_controllers :applications, :authorized_applications
+   end
+
+   
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

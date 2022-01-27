@@ -35,7 +35,7 @@ module GuardShifts
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
-    config.time_zone = 'America/Chihuahua'
+    # config.time_zone = 'America/Chihuahua'
 
     config.i18n.default_locale = :es
 
