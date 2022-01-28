@@ -2,7 +2,7 @@ module API
   module Helpers
     class Base < Grape::API
       prefix :api
-      mount API::Main
+      mount API::Main::Root
       
       def self.respond_to_error(e)
         logger.error e unless Rails.env.test? # Breaks tests...

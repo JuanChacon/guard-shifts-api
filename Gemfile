@@ -62,13 +62,12 @@ group :development, :test do
 
   #documentation via web to the API
   gem "grape-swagger", "0.30.0"
+
+   # gem for create fake information
+  gem 'faker'
 end
 
 group :test do 
-
- # gem for create fake information
-  gem 'faker'
-
 
   # gems to unit test
   gem 'shoulda-matchers', '~> 3.1'
