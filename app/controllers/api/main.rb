@@ -11,6 +11,7 @@ module API
       #  mount Projects::Services
       mount API::Services::Employees
       mount API::Services::Services
+      mount API::Services::Catalogs
     
     
   

@@ -10,7 +10,7 @@
 #fake data 
 
 if Rails.env.development?
-    monday = Date.today.beginning_of_week
+    beginning_of_week = Date.today.beginning_of_week
     3.times do 
        Employee.create(name:Faker::Movies::StarWars.character,surname:Faker::TvShows::Friends.character)
     end
@@ -18,14 +18,34 @@ if Rails.env.development?
     2.times do 
         Service.create(name:Faker::TvShows::Simpsons.character)
     end
+    service= Service.first
+    
 
-    ((monday)..(monday+6.days)).each do |date|
-        #M-S
-        service= Service.all.first
-        (19..24).each do |hour|
-        service.service_schedules.create(availability_date:"#{date}T#{hour}:00:00#{Time.now.formatted_offset}")
+    5.times.to_a.each {|i| 
+        p i 
+        new_date = beginning_of_week
+        new_date += i.week if i != 0
+
+        p new_date
+
+
+        ((new_date)..(new_date+5.days)).each do |date|
+            #M-S
+          
+            #hours week
+    
+            hours = (19..23) if [0,6].exclude?(date.wday)
+            hours = (10..23) if date.saturday?
+
+            hours.to_a.each do |hour|
+            service.service_schedules.create(availability_date:"#{date}T#{hour}:00:00",end_date:"#{date}T#{(hour+1)}:00:00")
+            end 
+    
+    
         end
-    end
+    }    
+
+    
 
 
 end
