@@ -26,6 +26,7 @@ module API
           @permitted_params ||= declared(params,
                                          include_missing: false)
         end
+
       end
 
       rescue_from ActiveRecord::RecordNotFound do |e|

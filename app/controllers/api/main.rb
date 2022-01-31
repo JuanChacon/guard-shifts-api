@@ -1,7 +1,7 @@
 require "grape-swagger"
 module API
   module Main
-    class API < Helpers::Base
+    class Root < Helpers::Base
       format :json
       default_error_formatter :json
       content_type :json, 'application/json'
@@ -9,7 +9,11 @@ module API
       formatter :json, Grape::Formatter::ActiveModelSerializers
     
       #  mount Projects::Services
-   
+      mount API::Services::Employees
+      mount API::Services::Services
+      mount API::Services::Catalogs
+    
+    
   
       add_swagger_documentation(
           base_path: '/',

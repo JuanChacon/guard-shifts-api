@@ -55,6 +55,8 @@ gem "groupdate"
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'grape-active_model_serializers'
 
+#traductions
+gem 'rails-i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,13 +64,12 @@ group :development, :test do
 
   #documentation via web to the API
   gem "grape-swagger", "0.30.0"
+
+   # gem for create fake information
+  gem 'faker'
 end
 
 group :test do 
-
- # gem for create fake information
-  gem 'faker'
-
 
   # gems to unit test
   gem 'shoulda-matchers', '~> 3.1'

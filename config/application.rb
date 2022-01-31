@@ -35,7 +35,7 @@ module GuardShifts
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
-    config.time_zone = 'America/Chihuahua'
+    # config.time_zone = 'America/Chihuahua'
 
     config.i18n.default_locale = :es
 
@@ -59,7 +59,7 @@ module GuardShifts
     #midleware to permit request to server
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-       origins 'localhost:3000','127.0.0.1:3000'
+       origins 'localhost:3000','127.0.0.1:3000','localhost:8080'
        resource "/api/*",
                  :headers => :any,
                  :methods => [:get, :post, :put, :delete, :options]
