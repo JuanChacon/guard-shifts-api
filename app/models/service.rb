@@ -13,6 +13,12 @@ class Service < ActiveRecord::Base
   def dates_from_week(week)
    schedules= week_schedule_by_week(week)
    schedules.any? ? "#{schedules&.first&.availability_date&.strftime('%d/%m/%Y')} al #{schedules&.last&.availability_date&.strftime('%d/%m/%Y')}" : ""
+  end 
+  
+  def hours_service_by_week(week)
+
+    week_schedule_by_week(week).count
+
   end  
 
 end

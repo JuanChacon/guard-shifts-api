@@ -9,5 +9,8 @@ class PersonalTest < ActiveSupport::TestCase
     # Validation test
     # ensure column name is present before saving
     it { should validate_presence_of(:name) }
+
+    # ensure has_many relationship with employee_schedules
+    it { should has_many(:employee_schedules) }
   end
 end
