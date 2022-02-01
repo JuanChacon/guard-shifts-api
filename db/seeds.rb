@@ -12,7 +12,7 @@
 if Rails.env.development?
     beginning_of_week = Date.today.beginning_of_week
     3.times do 
-       Employee.create(name:Faker::Movies::StarWars.character,surname:Faker::TvShows::Friends.character)
+       Employee.create(name:Faker::Movies::StarWars.character,surname:Faker::TvShows::Friends.character,color: ("%06x" % (rand * 0xffffff)))
     end
     
     2.times do 
@@ -22,11 +22,8 @@ if Rails.env.development?
     
 
     5.times.to_a.each {|i| 
-        p i 
         new_date = beginning_of_week
         new_date += i.week if i != 0
-
-        p new_date
 
 
         ((new_date)..(new_date+5.days)).each do |date|
