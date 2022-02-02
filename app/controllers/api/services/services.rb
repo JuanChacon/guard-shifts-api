@@ -45,6 +45,18 @@ module API
           end
         end
 
+
+        desc "service schedule"
+        params do
+          requires :id, type: Integer, desc: 'Id of service'
+          requires :weekNo,as: :week_no, type: String, desc: 'no of week'
+        end
+        route_param :id do
+         get '/a' do
+          employee = Service.find(params[:id]) 
+         end 
+        end  
+
       end
     end
   end

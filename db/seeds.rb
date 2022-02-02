@@ -12,21 +12,18 @@
 if Rails.env.development?
     beginning_of_week = Date.today.beginning_of_week
     3.times do 
-       Employee.create(name:Faker::Movies::StarWars.character,surname:Faker::TvShows::Friends.character)
+       Employee.create(name:Faker::Movies::StarWars.character,surname:Faker::TvShows::Friends.character,color: ("%06x" % (rand * 0xffffff)))
     end
     
     2.times do 
         Service.create(name:Faker::TvShows::Simpsons.character)
     end
-    service= Service.first
+    services= Service.take(2)
     
 
     5.times.to_a.each {|i| 
-        p i 
         new_date = beginning_of_week
         new_date += i.week if i != 0
-
-        p new_date
 
 
         ((new_date)..(new_date+5.days)).each do |date|
@@ -38,7 +35,10 @@ if Rails.env.development?
             hours = (10..23) if date.saturday?
 
             hours.to_a.each do |hour|
-            service.service_schedules.create(availability_date:"#{date}T#{hour}:00:00",end_date:"#{date}T#{(hour+1)}:00:00")
+                
+                services.each do |service|
+                    service.service_schedules.create(availability_date:"#{date}T#{hour}:00:00",end_date:"#{date}T#{(hour+1)}:00:00")
+                end    
             end 
     
     
