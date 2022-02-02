@@ -18,7 +18,7 @@ if Rails.env.development?
     2.times do 
         Service.create(name:Faker::TvShows::Simpsons.character)
     end
-    service= Service.first
+    services= Service.take(2)
     
 
     5.times.to_a.each {|i| 
@@ -35,7 +35,10 @@ if Rails.env.development?
             hours = (10..23) if date.saturday?
 
             hours.to_a.each do |hour|
-            service.service_schedules.create(availability_date:"#{date}T#{hour}:00:00",end_date:"#{date}T#{(hour+1)}:00:00")
+                
+                services.each do |service|
+                    service.service_schedules.create(availability_date:"#{date}T#{hour}:00:00",end_date:"#{date}T#{(hour+1)}:00:00")
+                end    
             end 
     
     

@@ -21,9 +21,9 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
-    * bundle exec rake db:create
-    * bundle exec rake db:migrate -> apply changes to database like create tablas or add fields to table
-    * bundle exec rake db:seed -> import basic data like, state names, city names etc.
+    * rake db:create
+    * rake db:migrate -> apply changes to database like create tablas or add fields to table
+    * rake db:seed -> import basic data like, state names, city names etc.
      or
      * bundle exec rake db:setup
 

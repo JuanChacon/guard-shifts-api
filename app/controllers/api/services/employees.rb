@@ -39,17 +39,20 @@ module API
                     #find schedule over the mean
   
                     hours_over_the_mean = schedules_over_mean.find{|data| data["mean"] == true}
-                    employee_schedule = []
+                    employee_schedules = []
+                    
   
                     # valid schedules for hours of service
-                   response = if @permitted_params[:schedules].size >= hours_service && hours_over_the_mean.nil?
-                                  saved_schedules = EmployeeSchedule.create(@permitted_params[:schedules])
-  
-                                  @permitted_params[:schedules].each do |schedule|
-                                    employee_schedule << EmployeeSchedule.find_or_create_by(schedule).persisted?
+                   response = if @permitted_params[:schedules].size >= hours_service #&& hours_over_the_mean.nil?
+                                   employee_schedules_ary = ApplicationController.helpers.set_schedule_by_employee(@permitted_params[:schedules],service.id,hours_service,hours_by_employee)
+                                   p employee_schedules_ary 
+                                   employee_schedules_ary.flatten.each do |schedule|
+                                    p schedule, 'rais'
+                                    
+                                    employee_schedules << EmployeeSchedule.find_or_create_by(schedule)
                                   end  
                                   
-                                  {message: 'Horarios agendados con exito', success: true,employee_id:employee_id}
+                                  {message: 'Horarios agendados con exito', success: employee_schedules_ary.flatten.size == employee_schedules.size }
                               else
                                 {message: 'Los horarios seleccionados no cumplen el horario a cubrir por el servicio', success:false}  
                               end  
